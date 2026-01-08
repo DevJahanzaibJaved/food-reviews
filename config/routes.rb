@@ -5,10 +5,21 @@ Rails.application.routes.draw do
   # Can be used by load balancers and uptime monitors to verify that the app is live.
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
+  # Root path
+  root "pages#home"
 
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # Authentication routes (Rails 8 built-in)
+  resource :session, only: [:new, :create, :destroy]
+  resources :passwords, param: :token, only: [:new, :create, :edit, :update]
+  
+  # Registration routes (custom - not included in Rails 8 auth)
+  get "signup", to: "registrations#new"
+  post "signup", to: "registrations#create"
+
+  # Convenience routes
+  get "login", to: "sessions#new"
+  delete "logout", to: "sessions#destroy"
+
+  # Dashboard (protected)
+  get "dashboard", to: "pages#dashboard"
 end

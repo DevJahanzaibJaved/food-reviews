@@ -1,4 +1,4 @@
-# Project Guidelines - Food Reviews SaaS MVP
+# Project Guidelines - DineInsights SaaS MVP
 
 ## Core Development Principles
 
@@ -70,5 +70,61 @@
 
 ---
 
-**Status**: Awaiting MVP requirements...
+## MVP Status
+
+✅ **MVP Requirements Documented**: See `MVP_SPECIFICATION.md`  
+✅ **Development Plan Created**: See `DEVELOPMENT_PLAN.md`
+
+### MVP Overview
+**DineInsights** - A SaaS platform where restaurants collect customer feedback via QR codes with dish-level ratings.
+
+**Key Features**:
+1. Restaurant registration with QR code generation
+2. Restaurant dashboard with dish management and analytics
+3. Customer review form (mobile-friendly, accessed via QR)
+4. Feedback storage with dish-level ratings
+5. Admin dashboard for platform management
+
+---
+
+## Implementation Progress
+
+### ✅ Phase 1: Authentication & User Management (COMPLETE)
+
+**Completed Features**:
+- ✅ Rails 8 built-in authentication system
+- ✅ User registration and login
+- ✅ Role-based access control (Admin, Restaurant Owner)
+- ✅ Password reset functionality with email delivery
+- ✅ Strong password validation (8+ chars, uppercase, lowercase, number, special char)
+- ✅ Modern black/white UI design system
+- ✅ Flash message notifications (success/error)
+- ✅ Responsive, mobile-friendly forms
+- ✅ Letter Opener configured for email testing in development
+
+**Key Files**:
+- `app/models/user.rb` - User model with roles and password validation
+- `app/models/session.rb` - Session management
+- `app/models/current.rb` - Current session context
+- `app/controllers/sessions_controller.rb` - Login/logout
+- `app/controllers/registrations_controller.rb` - User signup
+- `app/controllers/passwords_controller.rb` - Password reset
+- `app/controllers/concerns/authentication.rb` - Authentication logic
+- `app/views/shared/_navbar.html.erb` - Navigation component
+- `app/views/shared/_flash.html.erb` - Flash message component
+- `app/javascript/flash.js` - Flash message auto-hide
+
+**Database**:
+- `users` table - email_address, password_digest, role
+- `sessions` table - user_id, ip_address, user_agent
+
+**Test Accounts**:
+- Admin: `admin@foodreviews.com` / `password123`
+- Restaurant Owner: `restaurant@example.com` / `password123`
+
+---
+
+### 🔄 Next Phase: Phase 2 - Restaurant Management Core
+
+**Status**: Ready to begin Phase 2 implementation.
 

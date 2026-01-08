@@ -1,0 +1,22 @@
+<nav class="bg-white/95 backdrop-blur-sm border-b-2 border-black sticky top-0 z-40 shadow-sm">
+  <div class="container mx-auto px-5">
+    <div class="flex items-center justify-between h-20">
+      <div class="flex items-center">
+        <%= link_to root_path, class: "text-3xl font-black text-black hover:opacity-80 transition-opacity tracking-tight" do %>
+          DineInsights
+        <% end %>
+      </div>
+      
+      <div class="flex items-center space-x-6">
+        <% if authenticated? %>
+          <span class="text-gray-600 text-sm font-semibold hidden sm:inline"><%= current_user.email_address %></span>
+          <%= link_to "Dashboard", dashboard_path, class: "text-black font-bold hover:underline transition-all text-sm uppercase tracking-wide" %>
+          <%= button_to "Sign Out", session_path, method: :delete, class: "bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-900 transition-all duration-200 text-sm font-bold border-2 border-black shadow-[2px_2px_0_0_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] uppercase tracking-wide" %>
+        <% else %>
+          <%= link_to "Sign In", new_session_path, class: "text-black font-bold hover:underline transition-all text-sm uppercase tracking-wide" %>
+          <%= link_to "Sign Up", signup_path, class: "bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-900 transition-all duration-200 text-sm font-bold border-2 border-black shadow-[2px_2px_0_0_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] uppercase tracking-wide" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</nav>
