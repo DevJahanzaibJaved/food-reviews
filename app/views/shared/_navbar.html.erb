@@ -11,6 +11,9 @@
         <% if authenticated? %>
           <span class="text-gray-600 text-sm font-semibold hidden sm:inline"><%= current_user.email_address %></span>
           <%= link_to "Dashboard", dashboard_path, class: "text-black font-bold hover:underline transition-all text-sm uppercase tracking-wide" %>
+          <% if current_user.admin? %>
+            <%= link_to "Restaurants", restaurants_path, class: "text-black font-bold hover:underline transition-all text-sm uppercase tracking-wide" %>
+          <% end %>
           <%= button_to "Sign Out", session_path, method: :delete, class: "bg-black text-white px-5 py-2.5 rounded-xl hover:bg-gray-900 transition-all duration-200 text-sm font-bold border-2 border-black shadow-[2px_2px_0_0_#000] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px] uppercase tracking-wide" %>
         <% else %>
           <%= link_to "Sign In", new_session_path, class: "text-black font-bold hover:underline transition-all text-sm uppercase tracking-wide" %>

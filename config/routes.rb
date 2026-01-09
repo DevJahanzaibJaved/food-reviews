@@ -22,4 +22,12 @@ Rails.application.routes.draw do
 
   # Dashboard (protected)
   get "dashboard", to: "pages#dashboard"
+
+  # Restaurant routes
+  resources :restaurants do
+    member do
+      patch :approve
+      patch :suspend
+    end
+  end
 end

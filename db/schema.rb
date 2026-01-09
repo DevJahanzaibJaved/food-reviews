@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_01_08_172411) do
+ActiveRecord::Schema[8.0].define(version: 2026_01_08_190136) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "restaurants", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "owner_name", null: false
+    t.string "email", null: false
+    t.string "phone", null: false
+    t.text "address", null: false
+    t.string "plan", default: "free", null: false
+    t.string "status", default: "pending", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_restaurants_on_email"
+    t.index ["plan"], name: "index_restaurants_on_plan"
+    t.index ["status"], name: "index_restaurants_on_status"
+    t.index ["user_id"], name: "index_restaurants_on_user_id", unique: true
+  end
 
   create_table "sessions", force: :cascade do |t|
     t.bigint "user_id", null: false
@@ -33,5 +50,6 @@ ActiveRecord::Schema[8.0].define(version: 2026_01_08_172411) do
     t.index ["role"], name: "index_users_on_role"
   end
 
+  add_foreign_key "restaurants", "users"
   add_foreign_key "sessions", "users"
 end
